@@ -9,8 +9,12 @@ import {
 } from './definitions';
 import { formatCurrency } from './utils';
 
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
-
+const sql = postgres(process.env.POSTGRES_URL_NON_POOLING!, { ssl: 'require' });
+// app/lib/data.ts
+// ...
+console.log('Host da Conexão:', process.env.POSTGRES_HOST);
+console.log('URL da Conexão:', process.env.POSTGRES_URL ? 'URL está definida' : 'URL INDEFINIDA');
+// ...
 export async function fetchRevenue() {
   try {
     // Artificially delay a response for demo purposes.
